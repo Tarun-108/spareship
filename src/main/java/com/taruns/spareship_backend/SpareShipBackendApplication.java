@@ -8,7 +8,6 @@ public class SpareShipBackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpareShipBackendApplication.class, args);
-        System.out.println("The Start");
     }
 
 }
