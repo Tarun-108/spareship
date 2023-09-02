@@ -28,6 +28,7 @@ public class AuthenticationController {
         return "Dummy Warehouse having email: "+email;
     }
 
+
     @GetMapping(value = "/planning_team/login")
     public String getPlanningTeam(@RequestParam String email, @RequestParam String password){
         return "Dummy Planning Team having email: "+email;
