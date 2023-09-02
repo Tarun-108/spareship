@@ -8,16 +8,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ServiceCenterController {
 
-    @PostMapping(value = "service_center/register")
-    public String registerServiceCenter(@RequestBody ServiceCenter serviceCenter){
-        return "A new service center is registered in the Database. Service Center: " + serviceCenter;
-    }
-
-    @GetMapping(value = "/service_center/login")
-    public String getServiceCenter(@RequestParam String email, @RequestParam String password){
-        return "Dummy Service Center having email: "+email;
-    }
-
     @PostMapping(value = "/service_center/create_work_order")
     public String createWorkOrder(@RequestParam String serviceCenterId, @RequestBody WorkOrder workOrder){
         return "WorkOrder Created : "+workOrder+ " by Service Center: "+serviceCenterId;
