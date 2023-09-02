@@ -1,15 +1,13 @@
 package com.taruns.spareship_backend.contollers;
 
 
-import com.taruns.spareship_backend.models.entities.WorkOrder;
 import com.taruns.spareship_backend.models.helpers.enums.Status;
-import org.hibernate.jdbc.Work;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class WorkOrderController {
 
-    @GetMapping(value = "/work_order/get")
+    @GetMapping(value = "/work_order/getAll")
     public String getWorkOrders(){
         return "All Work Orders";
     }
@@ -17,6 +15,11 @@ public class WorkOrderController {
     @GetMapping(value = "/work_order/get/{id}")
     public String getWorkOrder(@PathVariable String id){
         return "Work Order with ID: "+id;
+    }
+
+    @GetMapping(value = "work_order/get")
+    public String getWorkOrderFromCustomerContact(@RequestParam String customerContact){
+        return "WorkOrder of Specific Customer with contact: "+customerContact;
     }
 
 
