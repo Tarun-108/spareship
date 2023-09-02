@@ -17,6 +17,5 @@ public class WorkOrder {
     private String customerContact;
     private ArrayList<String> requirements;
     private Status status;
-    private String serviceCenterId;
-
+    private String dateTime;
 }

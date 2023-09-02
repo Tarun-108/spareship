@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
+
 @Getter
 @Setter
 @ToString
@@ -17,6 +19,7 @@ public class WareHouse {
     private String password;
     private Zone zone;
     private String inventory_id;
+    private ArrayList<String> workOrderIds;
 }
 
 
