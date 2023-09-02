@@ -15,6 +15,8 @@ public class WorkOrder {
     private String id;
     private String customerName;
     private String customerContact;
+    private String description;
+    private String productId;
     private ArrayList<String> requirements;
     private Status status;
     private String dateTime;
