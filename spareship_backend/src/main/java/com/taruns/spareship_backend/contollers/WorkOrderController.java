@@ -1,25 +1,23 @@
 package com.taruns.spareship_backend.contollers;
 
 
-import com.taruns.spareship_backend.models.entities.WorkOrder;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.taruns.spareship_backend.models.helpers.enums.Status;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.util.Map;
 
 @RestController
 public class WorkOrderController {
 
     @GetMapping(value = "/work_order/getAll")
-    public List<WorkOrder> getWorkOrders(){
-        List<WorkOrder> workOrders = new ArrayList<>();
-        workOrders.add(new WorkOrder());
-        workOrders.add(new WorkOrder());
-        workOrders.add(new WorkOrder());
-        workOrders.add(new WorkOrder());
-        workOrders.add(new WorkOrder());
-        return workOrders;
+    public Map getWorkOrders() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ClassPathResource resource = new ClassPathResource("work_orders.json");
+
+        return objectMapper.readValue(resource.getInputStream(), Map.class);
     }
 
     @GetMapping(value = "/work_order/get/{id}")
@@ -31,7 +29,6 @@ public class WorkOrderController {
     public String getWorkOrderFromCustomerContact(@RequestParam String customerContact){
         return "WorkOrder of Specific Customer with contact: "+customerContact;
     }
-
 
     @PutMapping(value = "/work_order/update_status")
     public String updateWorkOrder(@RequestParam String workOrderId, @RequestParam Status status){

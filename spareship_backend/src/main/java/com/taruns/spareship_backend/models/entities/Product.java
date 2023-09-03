@@ -1,16 +1,20 @@
 package com.taruns.spareship_backend.models.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-import java.util.ArrayList;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
+@Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "PRODUCTS")
 public class Product {
-    private int skuId;
+    @Id
+    private int product_id;
     private String name;
-    private ArrayList<String> sparePartIds;
 }
