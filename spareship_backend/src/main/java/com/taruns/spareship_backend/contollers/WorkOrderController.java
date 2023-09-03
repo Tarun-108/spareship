@@ -1,15 +1,25 @@
 package com.taruns.spareship_backend.contollers;
 
 
+import com.taruns.spareship_backend.models.entities.WorkOrder;
 import com.taruns.spareship_backend.models.helpers.enums.Status;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class WorkOrderController {
 
     @GetMapping(value = "/work_order/getAll")
-    public String getWorkOrders(){
-        return "All Work Orders";
+    public List<WorkOrder> getWorkOrders(){
+        List<WorkOrder> workOrders = new ArrayList<>();
+        workOrders.add(new WorkOrder());
+        workOrders.add(new WorkOrder());
+        workOrders.add(new WorkOrder());
+        workOrders.add(new WorkOrder());
+        workOrders.add(new WorkOrder());
+        return workOrders;
     }
 
     @GetMapping(value = "/work_order/get/{id}")

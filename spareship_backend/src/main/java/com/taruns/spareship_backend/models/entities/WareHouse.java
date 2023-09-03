@@ -1,7 +1,6 @@
 package com.taruns.spareship_backend.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.taruns.spareship_backend.models.helpers.Address;
 import com.taruns.spareship_backend.models.helpers.enums.Zone;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 @Setter
 @ToString
 public class WareHouse {
-    private String id;
+    private int id;
     private String contact;
     private Address address;
     private String email;
@@ -21,8 +20,8 @@ public class WareHouse {
     @JsonIgnore
     private String password;
     private Zone zone;
-    private String inventory_id;
-    private ArrayList<String> workOrderIds;
+    private int inventory_id;
+    private ArrayList<Integer> workOrderIds;
 }
 
 

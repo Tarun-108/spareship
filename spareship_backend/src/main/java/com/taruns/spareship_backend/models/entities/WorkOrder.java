@@ -2,22 +2,32 @@ package com.taruns.spareship_backend.models.entities;
 
 
 import com.taruns.spareship_backend.models.helpers.enums.Status;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import lombok.*;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 @Getter
 @Setter
 @ToString
+@Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "WORK_ORDER_TABLE")
 public class WorkOrder {
-    private String id;
+    @Id
+    private int id;
+    private int productId;
+    private int serviceCenterId;
+    private int wareHouseId;
+    private int dispatchOrderId;
     private String customerName;
     private String customerContact;
     private String description;
-    private String productId;
-    private ArrayList<String> requirements;
     private Status status;
-    private String dateTime;
+    private Timestamp dateTime;
 }

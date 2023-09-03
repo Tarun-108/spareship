@@ -10,9 +10,9 @@ import java.util.ArrayList;
 @Setter
 @ToString
 public class SparePart {
-    private String sku;
+    private int skuId;
     private String category;
     private String description;
     private int price;
-    private ArrayList<String> compatibleDevicesId;
+    private ArrayList<Integer> compatibleDevicesId;
 }

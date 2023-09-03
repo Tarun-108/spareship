@@ -10,7 +10,7 @@ import java.util.ArrayList;
 @Setter
 @ToString
 public class Product {
-    private String skuId;
+    private int skuId;
     private String name;
     private ArrayList<String> sparePartIds;
 }

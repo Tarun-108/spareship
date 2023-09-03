@@ -10,19 +10,19 @@ import java.util.ArrayList;
 @Setter
 @ToString
 public class Inventory {
-    private String id;
+    private int id;
     @Getter
     @Setter
     @ToString
     private class ProductMapping {
-        private String productId;
+        private int productId;
         private int availableQuantity;
     }
     @Getter
     @Setter
     @ToString
     private class SparePartMapping {
-        private String sparePartId;
+        private int sparePartId;
         private int availableQuantity;
     }
     private ArrayList<ProductMapping> productMappings;

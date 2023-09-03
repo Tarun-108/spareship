@@ -1,28 +1,29 @@
 package com.taruns.spareship_backend.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.taruns.spareship_backend.models.helpers.Address;
 import com.taruns.spareship_backend.models.helpers.enums.Zone;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-import java.util.ArrayList;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
+@Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "SERVICE_CENTER_TABLE")
 public class ServiceCenter {
-    private String id;
+    @Id
+    private int id;
     private String contact;
-    private Address address;
-    private String email;
-
-    @JsonIgnore
-    private String password;
+    private int addressId;
     private Zone zone;
-    private String inventory_id;
-    private ArrayList<String> workOrderIds;
+    private int inventoryId;
+    private String email;
+    private String encryptedPassword;
 }
 
 

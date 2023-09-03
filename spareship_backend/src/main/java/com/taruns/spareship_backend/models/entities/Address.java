@@ -1,4 +1,4 @@
-package com.taruns.spareship_backend.models.helpers;
+package com.taruns.spareship_backend.models.entities;
 
 
 import lombok.Getter;
@@ -9,8 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Address {
-    private String addressLine1;
-    private String addressLine2;
+    private String addressLine;
     private String city;
     private String state;
     private int pinCode;
