@@ -8,13 +8,13 @@ import {
     DialogHeader,
     DialogBody,
     DialogFooter,
-    List, ListItem, ListItemSuffix, Checkbox
+    List, ListItem, Checkbox
 } from "@material-tailwind/react";
 import { useState } from "react";
 
 
 
-const ComplaintCard = () => {
+const CustomerSupportCard = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
 
@@ -89,11 +89,7 @@ const ComplaintCard = () => {
                             return (
                                 <ListItem key={sparePartData._id}>
                                     <div className="flex">
-                                        <Checkbox
-                                            disabled={!sparePartData.availablity}
-                                            containerProps={{ className: "-ml-2.5" }}
-                                        />
-                                        <div className="ml-4">
+                                        <div>
                                             <Typography variant="h6" color="blue-gray">
                                                 Item 1
                                             </Typography>
@@ -102,9 +98,6 @@ const ComplaintCard = () => {
                                             </Typography>
                                         </div>
                                     </div>
-                                    <ListItemSuffix>
-                                        {sparePartData.availablity ? <span className="text-green-600">Available</span> : <span className="text-red-600">Not Available</span>}
-                                    </ListItemSuffix>
                                 </ListItem>
                             )
                         })}
@@ -119,13 +112,10 @@ const ComplaintCard = () => {
                     >
                         <span>Cancel</span>
                     </Button>
-                    <Button variant="gradient" color="green" onClick={handleOpen}>
-                        <span>Update</span>
-                    </Button>
                 </DialogFooter>
             </Dialog>
         </div>
     )
 }
 
-export default ComplaintCard;
+export default CustomerSupportCard;

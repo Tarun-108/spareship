@@ -8,13 +8,13 @@ import {
     DialogHeader,
     DialogBody,
     DialogFooter,
-    List, ListItem, ListItemSuffix, Checkbox
+    List, ListItem, ListItemSuffix
 } from "@material-tailwind/react";
 import { useState } from "react";
 
 
 
-const ComplaintCard = () => {
+const WarehouseCard = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
 
@@ -22,18 +22,18 @@ const ComplaintCard = () => {
         _id: "2344",
         category: "Screen",
         description: "Screen for iPhone 12",
-        availablity: true,
-        fulfilled: false,
+        quantity: 2,
     }
 
     const cardData = {
         _id: "237",
-        complainerName: "Tarun Srivastava",
-        status: "Registered",
-        description: "Defect in screen",
-        contact: "1234567890",
-        productName: "iphone12",
-        requirements: [sparePartData],
+        status: "Dispatched",
+        spareParts: [sparePartData],
+        warehouse: {
+            _id: "123",
+            name: "Warehouse 1",
+            contact: "1234567890",
+        }
     }
 
     return (
@@ -42,7 +42,7 @@ const ComplaintCard = () => {
                 <CardBody>
                     <div className="flex justify-between">
                         <Typography variant="h5" color="blue-gray" className="mb-2">
-                            {cardData.complainerName},&nbsp;<span className="font-light">{`Complaint#${cardData._id}`}</span>
+                            <span className="font-light">{`Order#${cardData._id}`}</span>
                         </Typography>
                         <Typography>
                             {cardData.status}
@@ -63,7 +63,7 @@ const ComplaintCard = () => {
                 <DialogHeader>
                     <div>
                         <Typography variant="h5" color="blue-gray" className="">
-                            {cardData.complainerName},&nbsp;<span className="font-light">{`Complaint#${cardData._id}`}</span>
+                            <span className="font-light">{`Order#${cardData._id}`}</span>
                         </Typography>
                         <Typography>
                             {cardData.contact}
@@ -75,35 +75,31 @@ const ComplaintCard = () => {
                         Status: {cardData.status}
                     </Typography>
                     <Typography>
-                        Product: {cardData.productName}
+                        Warehouse: {cardData.warehouse.name}
                     </Typography>
                     <Typography className="mb-4">
-                        Description: {cardData.description}
+                        Contact: {cardData.warehouse.contact}
                     </Typography>
                     <hr />
                     <Typography className="text-2xl font-bold my-3">
-                        Requirements
+                        Items
                     </Typography>
                     <List>
-                        {cardData.requirements.map((sparePartData, index) => {
+                        {cardData.spareParts.map((sparePartData, index) => {
                             return (
                                 <ListItem key={sparePartData._id}>
                                     <div className="flex">
-                                        <Checkbox
-                                            disabled={!sparePartData.availablity}
-                                            containerProps={{ className: "-ml-2.5" }}
-                                        />
                                         <div className="ml-4">
                                             <Typography variant="h6" color="blue-gray">
-                                                Item 1
+                                                {sparePartData.category}
                                             </Typography>
                                             <Typography variant="small" color="gray" className="font-normal">
-                                                Software Engineer
+                                                {sparePartData.description}
                                             </Typography>
                                         </div>
                                     </div>
                                     <ListItemSuffix>
-                                        {sparePartData.availablity ? <span className="text-green-600">Available</span> : <span className="text-red-600">Not Available</span>}
+                                        Qty: {sparePartData.quantity}
                                     </ListItemSuffix>
                                 </ListItem>
                             )
@@ -120,7 +116,7 @@ const ComplaintCard = () => {
                         <span>Cancel</span>
                     </Button>
                     <Button variant="gradient" color="green" onClick={handleOpen}>
-                        <span>Update</span>
+                        <span>Dispatch</span>
                     </Button>
                 </DialogFooter>
             </Dialog>
@@ -128,4 +124,4 @@ const ComplaintCard = () => {
     )
 }
 
-export default ComplaintCard;
+export default WarehouseCard;

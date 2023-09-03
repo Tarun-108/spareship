@@ -1,50 +1,52 @@
-import ComplaintCard from "../Components/ComplaintCard";
-import NavBar from "../Components/StdNavBar";
-import { Button } from "@material-tailwind/react";
-import { useNavigate } from "react-router-dom";
+import ComplaintCard from '../Components/ComplaintCard'
+import NavBar from '../Components/StdNavBar'
+import { Button } from '@material-tailwind/react'
+import { useNavigate } from 'react-router-dom'
 
 const ServiceCenterPage = () => {
-  let navigate = useNavigate();
+    let navigate = useNavigate();
 
-  const handleOpenComplaintForm = () => {
-    navigate("/service-center/complaint");
-  };
+    const handleOpenComplaintForm = () => {
+        navigate("/service-center/complaint");
+    }
 
-  const handleOpenInventory = () => {
-    navigate("/service-center/inventory");
-  };
+    const handleOpenInventory = () => {
+        navigate("/service-center/inventory");
+    }
 
-  return (
-    <div className="App">
-      <NavBar />
-      <div className="">
-        <div className="flex justify-between m-10">
-          <div className="text-3xl font-semibold">Active Complaints</div>
-          <div className="flex gap-5">
-            <Button
-              variant="gradient"
-              size="sm"
-              className="hidden lg:inline-block"
-              onClick={handleOpenInventory}
-            >
-              <span>Inventory</span>
-            </Button>
-            <Button
-              variant="gradient"
-              size="sm"
-              className="hidden lg:inline-block"
-              onClick={handleOpenComplaintForm}
-            >
-              <span>Register Complaint</span>
-            </Button>
-          </div>
+    return (
+        <div className="App">
+            <NavBar />
+            <div className="">
+                <div className="flex justify-between m-10">
+                    <div className="text-3xl font-semibold">
+                        Active Complaints
+                    </div>
+                    <div className='flex gap-5'>
+                        <Button
+                            variant="gradient"
+                            size="sm"
+                            className="hidden lg:inline-block"
+                            onClick={handleOpenInventory}
+                        >
+                            <span>Inventory</span>
+                        </Button>
+                        <Button
+                            variant="gradient"
+                            size="sm"
+                            className="hidden lg:inline-block"
+                            onClick={handleOpenComplaintForm}
+                        >
+                            <span>Register Complaint</span>
+                        </Button>
+                    </div>
+                </div>
+                <div>
+                    <ComplaintCard />
+                </div>
+            </div>
         </div>
-        <div>
-          <ComplaintCard />
-        </div>
-      </div>
-    </div>
-  );
-};
+    )
+}
 
-export default ServiceCenterPage;
+export default ServiceCenterPage

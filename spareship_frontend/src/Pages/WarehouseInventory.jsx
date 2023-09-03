@@ -1,9 +1,8 @@
 import ListWithBadge from "../Components/ListWithBadge"
 import NavBar from "../Components/StdNavBar"
-import DispatchOrderCard from "../Components/DispatchOrderCard";
 import { Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@material-tailwind/react";
 
-const ServiceCenterInventoryPage = () => {
+const WarehouseInventory = () => {
     return (
         <div className="App">
             <NavBar />
@@ -15,9 +14,6 @@ const ServiceCenterInventoryPage = () => {
                         </Tab>
                         <Tab key={"spareParts"} value={"spareParts"}>
                             Spare Parts
-                        </Tab>
-                        <Tab key={"dispatchOrders"} value={"dispatchOrders"}>
-                            Dispatch Orders
                         </Tab>
                     </TabsHeader>
                     <TabsBody>
@@ -31,9 +27,6 @@ const ServiceCenterInventoryPage = () => {
                                 <ListWithBadge />
                             </div>
                         </TabPanel>
-                        <TabPanel key={"dispatchOrders"} value={"dispatchOrders"}>
-                            <DispatchOrderCard />
-                        </TabPanel>
                     </TabsBody>
                 </Tabs>
             </div>
@@ -41,4 +34,4 @@ const ServiceCenterInventoryPage = () => {
     )
 }
 
-export default ServiceCenterInventoryPage
+export default WarehouseInventory

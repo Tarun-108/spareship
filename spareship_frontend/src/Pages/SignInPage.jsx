@@ -1,15 +1,22 @@
 import NavBar from "../Components/StdNavBar";
-import SignIn from "../Components/SignIn";
+import SignIn from "../Components/SignIn"
+import { useNavigate } from "react-router-dom";
+import { isLoggedIn } from "../constants";
 
 const SignInPage = () => {
-  return (
-    <div className="App">
-      <NavBar />
-      <div className="m-10 p-10 flex justify-center align-center">
-        <SignIn />
-      </div>
-    </div>
-  );
-};
+    let navigate = useNavigate();
+    if (isLoggedIn()) {
+        navigate(`/${localStorage.getItem("userType")}`);
+    }
+
+    return (
+        <div className="App">
+            <NavBar />
+            <div className="m-10 p-10 flex justify-center align-center">
+                <SignIn />
+            </div>
+        </div>
+    )
+}
 
 export default SignInPage;

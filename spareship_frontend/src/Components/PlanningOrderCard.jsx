@@ -8,13 +8,13 @@ import {
     DialogHeader,
     DialogBody,
     DialogFooter,
-    List, ListItem, ListItemSuffix, Checkbox
+    List, ListItem, ListItemSuffix, Select, Option
 } from "@material-tailwind/react";
 import { useState } from "react";
 
 
 
-const ComplaintCard = () => {
+const PlanningOrderCard = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
 
@@ -89,11 +89,7 @@ const ComplaintCard = () => {
                             return (
                                 <ListItem key={sparePartData._id}>
                                     <div className="flex">
-                                        <Checkbox
-                                            disabled={!sparePartData.availablity}
-                                            containerProps={{ className: "-ml-2.5" }}
-                                        />
-                                        <div className="ml-4">
+                                        <div>
                                             <Typography variant="h6" color="blue-gray">
                                                 Item 1
                                             </Typography>
@@ -103,7 +99,13 @@ const ComplaintCard = () => {
                                         </div>
                                     </div>
                                     <ListItemSuffix>
-                                        {sparePartData.availablity ? <span className="text-green-600">Available</span> : <span className="text-red-600">Not Available</span>}
+                                        <Select label="Select Version">
+                                            <Option>Material Tailwind HTML</Option>
+                                            <Option>Material Tailwind React</Option>
+                                            <Option>Material Tailwind Vue</Option>
+                                            <Option>Material Tailwind Angular</Option>
+                                            <Option>Material Tailwind Svelte</Option>
+                                        </Select>
                                     </ListItemSuffix>
                                 </ListItem>
                             )
@@ -120,7 +122,7 @@ const ComplaintCard = () => {
                         <span>Cancel</span>
                     </Button>
                     <Button variant="gradient" color="green" onClick={handleOpen}>
-                        <span>Update</span>
+                        <span>Allot</span>
                     </Button>
                 </DialogFooter>
             </Dialog>
@@ -128,4 +130,4 @@ const ComplaintCard = () => {
     )
 }
 
-export default ComplaintCard;
+export default PlanningOrderCard;
