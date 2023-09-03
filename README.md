@@ -30,6 +30,10 @@ by the Planning team
 
 
 ## Presentation Link
-The presentaion consisting of the implementation of the solution is attached. The peresentaion contains the ER diagram and the workflow of the website:
+Tech Stack used
+- For Backend: Java with Spring Boot Framework
+- For Frontend: ReactJs, HTML, Tailwind CSS
+
+Further details about the implementation of the solution is attached, the presentation contains the ER diagram describing the relations in the database and the workflow diagram of the website:
 
 https://docs.google.com/presentation/d/1J2ylagzdNmeQLGIQ0DWq_TJYKhRZ62lJxtCZ1eV5IHw/edit?usp=sharing
