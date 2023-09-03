@@ -5,36 +5,17 @@ import {
     Typography,
     Button,
     Dialog,
-    DialogHeader,
-    DialogBody,
-    DialogFooter,
-    List, ListItem, ListItemSuffix, Select, Option
+    DialogHeader, DialogBody, DialogFooter, List, ListItem, ListItemSuffix, Select, Option
 } from "@material-tailwind/react";
 import { useState } from "react";
+import { warehouses } from "../data/data";
 
 
 
-const PlanningOrderCard = () => {
+const PlanningOrderCard = ({ data }) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
-
-    const sparePartData = {
-        _id: "2344",
-        category: "Screen",
-        description: "Screen for iPhone 12",
-        availablity: true,
-        fulfilled: false,
-    }
-
-    const cardData = {
-        _id: "237",
-        complainerName: "Tarun Srivastava",
-        status: "Registered",
-        description: "Defect in screen",
-        contact: "1234567890",
-        productName: "iphone12",
-        requirements: [sparePartData],
-    }
+    const cardData = data
 
     return (
         <div>
@@ -42,7 +23,7 @@ const PlanningOrderCard = () => {
                 <CardBody>
                     <div className="flex justify-between">
                         <Typography variant="h5" color="blue-gray" className="mb-2">
-                            {cardData.complainerName},&nbsp;<span className="font-light">{`Complaint#${cardData._id}`}</span>
+                            {cardData.complainerName},&nbsp;<span className="font-light">{`Complaint#${cardData.id}`}</span>
                         </Typography>
                         <Typography>
                             {cardData.status}
@@ -63,7 +44,7 @@ const PlanningOrderCard = () => {
                 <DialogHeader>
                     <div>
                         <Typography variant="h5" color="blue-gray" className="">
-                            {cardData.complainerName},&nbsp;<span className="font-light">{`Complaint#${cardData._id}`}</span>
+                            {cardData.complainerName},&nbsp;<span className="font-light">{`Complaint#${cardData.id}`}</span>
                         </Typography>
                         <Typography>
                             {cardData.contact}
@@ -87,24 +68,24 @@ const PlanningOrderCard = () => {
                     <List>
                         {cardData.requirements.map((sparePartData, index) => {
                             return (
-                                <ListItem key={sparePartData._id}>
+                                <ListItem key={sparePartData.id}>
                                     <div className="flex">
                                         <div>
                                             <Typography variant="h6" color="blue-gray">
-                                                Item 1
+                                                {sparePartData.category}
                                             </Typography>
                                             <Typography variant="small" color="gray" className="font-normal">
-                                                Software Engineer
+                                                {sparePartData.description}
                                             </Typography>
                                         </div>
                                     </div>
-                                    <ListItemSuffix>
-                                        <Select label="Select Version">
-                                            <Option>Material Tailwind HTML</Option>
-                                            <Option>Material Tailwind React</Option>
-                                            <Option>Material Tailwind Vue</Option>
-                                            <Option>Material Tailwind Angular</Option>
-                                            <Option>Material Tailwind Svelte</Option>
+                                    <ListItemSuffix className="overflow-scroll">
+                                        <Select label="Select Warehouse">
+                                            {warehouses.map((warehouse) => {
+                                                return (
+                                                    <Option key={warehouse.id}>{warehouse.name}</Option>
+                                                )
+                                            })}
                                         </Select>
                                     </ListItemSuffix>
                                 </ListItem>

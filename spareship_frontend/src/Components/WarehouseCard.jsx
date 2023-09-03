@@ -14,9 +14,10 @@ import { useState } from "react";
 
 
 
-const WarehouseCard = () => {
+const WarehouseCard = ({ data }) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
+    console.log(data);
 
     const sparePartData = {
         _id: "2344",
@@ -42,17 +43,14 @@ const WarehouseCard = () => {
                 <CardBody>
                     <div className="flex justify-between">
                         <Typography variant="h5" color="blue-gray" className="mb-2">
-                            <span className="font-light">{`Order#${cardData._id}`}</span>
+                            <span className="font-light">{`Order#${data.id}`}</span>
                         </Typography>
                         <Typography>
-                            {cardData.status}
+                            {data.status}
                         </Typography>
                     </div>
                     <Typography>
-                        {cardData.productName}
-                    </Typography>
-                    <Typography>
-                        {cardData.description}
+                        Service Center#{data.ServiceCenterId}
                     </Typography>
                 </CardBody>
                 <CardFooter className="pt-0">
@@ -63,31 +61,25 @@ const WarehouseCard = () => {
                 <DialogHeader>
                     <div>
                         <Typography variant="h5" color="blue-gray" className="">
-                            <span className="font-light">{`Order#${cardData._id}`}</span>
-                        </Typography>
-                        <Typography>
-                            {cardData.contact}
+                            <span className="font-light">{`Order#${data.id}`}</span>
                         </Typography>
                     </div>
                 </DialogHeader>
                 <DialogBody divider>
                     <Typography>
-                        Status: {cardData.status}
+                        Status: {data.status}
                     </Typography>
                     <Typography>
-                        Warehouse: {cardData.warehouse.name}
-                    </Typography>
-                    <Typography className="mb-4">
-                        Contact: {cardData.warehouse.contact}
+                        Warehouse Id: {data.wareHouseId}
                     </Typography>
                     <hr />
                     <Typography className="text-2xl font-bold my-3">
                         Items
                     </Typography>
                     <List>
-                        {cardData.spareParts.map((sparePartData, index) => {
+                        {data.items.map((sparePartData, index) => {
                             return (
-                                <ListItem key={sparePartData._id}>
+                                <ListItem key={sparePartData.sku_id}>
                                     <div className="flex">
                                         <div className="ml-4">
                                             <Typography variant="h6" color="blue-gray">
@@ -99,7 +91,7 @@ const WarehouseCard = () => {
                                         </div>
                                     </div>
                                     <ListItemSuffix>
-                                        Qty: {sparePartData.quantity}
+                                        Qty: 2
                                     </ListItemSuffix>
                                 </ListItem>
                             )

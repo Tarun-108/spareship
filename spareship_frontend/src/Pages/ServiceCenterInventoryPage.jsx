@@ -1,6 +1,7 @@
 import ListWithBadge from "../Components/ListWithBadge"
 import NavBar from "../Components/StdNavBar"
 import DispatchOrderCard from "../Components/DispatchOrderCard";
+import { dispatchOrders, mockAllProducts } from "../data/data";
 import { Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@material-tailwind/react";
 
 const ServiceCenterInventoryPage = () => {
@@ -23,16 +24,23 @@ const ServiceCenterInventoryPage = () => {
                     <TabsBody>
                         <TabPanel key={"products"} value={"products"}>
                             <div>
-                                <ListWithBadge />
+                                <ListWithBadge data={mockAllProducts} />
                             </div>
                         </TabPanel>
                         <TabPanel key={"spareParts"} value={"spareParts"}>
                             <div>
-                                <ListWithBadge />
+                                <ListWithBadge data={mockAllProducts[1].spare_parts} />
                             </div>
                         </TabPanel>
                         <TabPanel key={"dispatchOrders"} value={"dispatchOrders"}>
-                            <DispatchOrderCard />
+                            {dispatchOrders.map((dispatchOrder) => {
+                                return (
+                                    <DispatchOrderCard
+                                        key={dispatchOrder.id}
+                                        data={dispatchOrder}
+                                    />
+                                )
+                            })}
                         </TabPanel>
                     </TabsBody>
                 </Tabs>

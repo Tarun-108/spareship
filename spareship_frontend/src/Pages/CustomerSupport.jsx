@@ -1,5 +1,6 @@
 import NavBar from "../Components/StdNavBar"
 import CustomerSupportCard from "../Components/CustomerSupportCard"
+import { workOrders } from "../data/data"
 
 const CustomerSupport = () => {
     return (
@@ -13,7 +14,14 @@ const CustomerSupport = () => {
                 </div>
             </div>
             <div>
-                <CustomerSupportCard />
+                {workOrders.map((data) => {
+                    return (
+                        <CustomerSupportCard
+                            key={data.id}
+                            data={data}
+                        />
+                    )
+                })}
             </div>
         </div>
     )

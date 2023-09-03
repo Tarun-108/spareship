@@ -1,11 +1,12 @@
 import { Select, Option, Input, Checkbox, Typography, Button } from "@material-tailwind/react"
 import NavBar from "../Components/StdNavBar"
 import { Link } from "react-router-dom"
+import { mockAllProducts } from "../data/data"
 import { API_URL } from "../constants"
 import { useEffect, useState } from "react"
 
 const ServiceCenterComplaintPage = () => {
-    const [allProducts, setAllProducts] = useState([]);
+    const [allProducts, setAllProducts] = useState(mockAllProducts);
     const [allSpareParts, setAllSpareParts] = useState([]);
     const [selectedProductId, setSelectedProductId] = useState(null);
     const [selectedSparePartId, setSelectedSparePartId] = useState(null);

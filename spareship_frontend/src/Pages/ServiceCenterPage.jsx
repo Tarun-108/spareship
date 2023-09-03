@@ -2,6 +2,7 @@ import ComplaintCard from '../Components/ComplaintCard'
 import NavBar from '../Components/StdNavBar'
 import { Button } from '@material-tailwind/react'
 import { useNavigate } from 'react-router-dom'
+import { workOrders } from '../data/data'
 
 const ServiceCenterPage = () => {
     let navigate = useNavigate();
@@ -42,7 +43,14 @@ const ServiceCenterPage = () => {
                     </div>
                 </div>
                 <div>
-                    <ComplaintCard />
+                    {workOrders.map((data) => {
+                        return (
+                            <ComplaintCard
+                                key={data.id}
+                                data={data}
+                            />
+                        )
+                    })}
                 </div>
             </div>
         </div>

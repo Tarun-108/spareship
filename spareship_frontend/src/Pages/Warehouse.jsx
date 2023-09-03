@@ -2,6 +2,7 @@ import NavBar from "../Components/StdNavBar";
 import WarehouseCard from "../Components/WarehouseCard";
 import { Button } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
+import { dispatchOrders } from "../data/data";
 
 const Warehouse = () => {
     let navigate = useNavigate();
@@ -29,7 +30,14 @@ const Warehouse = () => {
                 </div>
             </div>
             <div>
-                <WarehouseCard />
+                {dispatchOrders.map((data) => {
+                    return (
+                        <WarehouseCard
+                            key={data.id}
+                            data={data}
+                        />
+                    )
+                })}
             </div>
         </div>
     )

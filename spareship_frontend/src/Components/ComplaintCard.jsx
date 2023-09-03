@@ -14,27 +14,10 @@ import { useState } from "react";
 
 
 
-const ComplaintCard = () => {
+const ComplaintCard = ({ data }) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
-
-    const sparePartData = {
-        _id: "2344",
-        category: "Screen",
-        description: "Screen for iPhone 12",
-        availablity: true,
-        fulfilled: false,
-    }
-
-    const cardData = {
-        _id: "237",
-        complainerName: "Tarun Srivastava",
-        status: "Registered",
-        description: "Defect in screen",
-        contact: "1234567890",
-        productName: "iphone12",
-        requirements: [sparePartData],
-    }
+    const cardData = data;
 
     return (
         <div>
@@ -42,7 +25,7 @@ const ComplaintCard = () => {
                 <CardBody>
                     <div className="flex justify-between">
                         <Typography variant="h5" color="blue-gray" className="mb-2">
-                            {cardData.complainerName},&nbsp;<span className="font-light">{`Complaint#${cardData._id}`}</span>
+                            {cardData.complainerName},&nbsp;<span className="font-light">{`Complaint#${cardData.id}`}</span>
                         </Typography>
                         <Typography>
                             {cardData.status}
@@ -63,7 +46,7 @@ const ComplaintCard = () => {
                 <DialogHeader>
                     <div>
                         <Typography variant="h5" color="blue-gray" className="">
-                            {cardData.complainerName},&nbsp;<span className="font-light">{`Complaint#${cardData._id}`}</span>
+                            {cardData.complainerName},&nbsp;<span className="font-light">{`Complaint#${cardData.id}`}</span>
                         </Typography>
                         <Typography>
                             {cardData.contact}
@@ -87,18 +70,18 @@ const ComplaintCard = () => {
                     <List>
                         {cardData.requirements.map((sparePartData, index) => {
                             return (
-                                <ListItem key={sparePartData._id}>
+                                <ListItem key={sparePartData.sku_id}>
                                     <div className="flex">
                                         <Checkbox
-                                            disabled={!sparePartData.availablity}
+                                            disabled={!sparePartData.fulfilled}
                                             containerProps={{ className: "-ml-2.5" }}
                                         />
                                         <div className="ml-4">
                                             <Typography variant="h6" color="blue-gray">
-                                                Item 1
+                                                {sparePartData.category}
                                             </Typography>
                                             <Typography variant="small" color="gray" className="font-normal">
-                                                Software Engineer
+                                                {sparePartData.description}
                                             </Typography>
                                         </div>
                                     </div>

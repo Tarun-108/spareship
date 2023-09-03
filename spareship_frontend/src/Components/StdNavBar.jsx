@@ -34,7 +34,7 @@ const NavBar = () => {
                         href="#"
                         className="mr-4 cursor-pointer py-1.5 font-medium"
                     >
-                        <Link to="/">Xiaomi</Link>
+                        <Link to="/">SpareShip</Link>
                     </Typography>
                     <div className="flex items-center gap-4">
                         {user ? <Button
