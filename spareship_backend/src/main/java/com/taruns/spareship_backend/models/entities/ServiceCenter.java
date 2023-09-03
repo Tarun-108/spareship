@@ -1,5 +1,6 @@
 package com.taruns.spareship_backend.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.taruns.spareship_backend.models.helpers.Address;
 import com.taruns.spareship_backend.models.helpers.enums.Zone;
 import lombok.Getter;
@@ -16,6 +17,8 @@ public class ServiceCenter {
     private String contact;
     private Address address;
     private String email;
+
+    @JsonIgnore
     private String password;
     private Zone zone;
     private String inventory_id;
