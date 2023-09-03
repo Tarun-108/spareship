@@ -1,0 +1,122 @@
+{
+  "DispatchOrders": [
+    {
+      "id": 0,
+      "wareHouseId": 1,
+      "ServiceCenterId": 0,
+      "status": "DISPATCHED",
+      "items": [
+        {
+          "sku_id": "5",
+          "category": "Battery",
+          "description": "Battery"
+        },
+        {
+          "sku_id": "2",
+          "category": "LCM",
+          "description": "Front Cover Display Module-Redmi Note5-black"
+        },
+        {
+          "sku_id": "4",
+          "category": "Mainboard",
+          "description": "Mainboard Assy-Redmi Note5 Pro-IN-4+64G"
+        }
+      ],
+      "workOrderIds": [1, 0, 5]
+    },
+    {
+      "id": 1,
+      "wareHouseId": 2,
+      "ServiceCenterId": 1,
+      "status": "DISPATCHED",
+      "items": [
+        {
+          "sku_id": "5",
+          "category": "Battery",
+          "description": "Battery"
+        },
+        {
+          "sku_id": "7",
+          "category": "Mainboard",
+          "description": "Main board Components - Redmi Note5-IN-4+64G-2.0"
+        }
+      ],
+      "workOrderIds": [2, 4]
+    },
+    {
+      "id": 2,
+      "wareHouseId": 3,
+      "ServiceCenterId": 2,
+      "status": "DISPATCHED",
+      "items": [
+        {
+          "sku_id": "20",
+          "category": "Battery",
+          "description": "Battery"
+        },
+        {
+          "sku_id": "21",
+          "category": "LCD Module",
+          "description": "Front Cover Display Module-F6L-IN-Blue"
+        }
+      ],
+      "workOrderIds": [3, 17]
+    },
+    {
+      "id": 3,
+      "wareHouseId": 4,
+      "ServiceCenterId": 3,
+      "status": "DISPATCHED",
+      "items": [
+        {
+          "sku_id": "6",
+          "category": "LCM",
+          "description": "Front Cover Display Module - All Colour"
+        }
+      ],
+      "workOrderIds": [15]
+    },
+    {
+      "id": 4,
+      "wareHouseId": 1,
+      "ServiceCenterId": 0,
+      "status": "DISPATCHED",
+      "items": [
+        {
+          "sku_id": "38",
+          "category": "Battery",
+          "description": "Battery"
+        }
+      ],
+      "workOrderIds": [5]
+    },
+    {
+      "id": 5,
+      "wareHouseId": 2,
+      "ServiceCenterId": 1,
+      "status": "DISPATCHED",
+      "items": [
+        {
+          "sku_id": "44",
+          "category": "Mainboard",
+          "description": "Mainboard Assy-Redmi 3S-IN-32G"
+        }
+      ],
+      "workOrderIds": [6]
+    },
+    {
+      "id": 6,
+      "wareHouseId": 3,
+      "ServiceCenterId": 2,
+      "status": "DISPATCHED",
+      "items": [
+        {
+          "sku_id": "50",
+          "category": "Mainboard",
+          "description": "Mainboard Assy - 6+64G"
+        }
+      ],
+      "workOrderIds": [12]
+    }
+  ]
+}

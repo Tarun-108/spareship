@@ -15,7 +15,7 @@ public class WorkOrderController {
     @GetMapping(value = "/work_order/getAll")
     public Map getWorkOrders() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        ClassPathResource resource = new ClassPathResource("work_orders.json");
+        ClassPathResource resource = new ClassPathResource("workOrders.json");
 
         return objectMapper.readValue(resource.getInputStream(), Map.class);
     }
