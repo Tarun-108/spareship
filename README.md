@@ -40,8 +40,9 @@ by the Planning team
 - Now Open **spareship_frontend** in Webstrom or VsCode or any other preferred IDE of your choice. 
 - Finally getting started with Create React App
     This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-- Launch `npm start` in the console
+- Open terminal inside the project folder
+- Run `npm install` to install the desired packages
+- Run `npm start` 
 
 It runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
