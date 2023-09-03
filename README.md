@@ -47,11 +47,22 @@ by the Planning team
 It runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Presentation Link
-Tech Stack used
+
+## Tech Stack used
 - For Backend: Java with Spring Boot Framework
 - For Frontend: ReactJs, HTML, Tailwind CSS
 
+
+## Presentation
+
+### ER Diagram 
+![image](https://github.com/Tarun-108/spareship/assets/79051562/c3ef1da9-d8ff-43c4-9242-63faa9ba8ffa)
+
+### Working Demo
+https://drive.google.com/file/d/1rflVM4DlTKDt1dbfutuHlLlVIzts7kOJ/view?usp=sharing
+
+### Detailed PPT
 Further details about the implementation of the solution is attached, the presentation contains the ER diagram describing the relations in the database and the workflow diagram of the website:
 
 https://docs.google.com/presentation/d/1J2ylagzdNmeQLGIQ0DWq_TJYKhRZ62lJxtCZ1eV5IHw/edit?usp=sharing
+
