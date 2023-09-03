@@ -20,14 +20,31 @@ by the Planning team
    - Address customer queries about device repair orders
 # Installation
 
+- Clone the github repository.
+- Launch the MySQL Console
+- Import the data from the **dbData** folder using the MySQL Console
+- Open the folder **spareship_backend** using IntelliJ or any preferred IDE
+- Make sure you have appropriate JDK present on the machine to launch the project
+- After launching the project paste the following in resources/application.properties
+````
+   app.name=SpareShip
+   app.version=v1
+   server.port=5000
+   spring.datasource.url=<your-db-link>
+   spring.datasource.username=<your-username>
+   spring.datasource.password=<your-password>
+   spring.jpa.hibernate.ddl-auto=update
+   spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+````
+- Build and launch the project; On successfull execution the server is listening to **localhost:5000/**
+- Now Open **spareship_frontend** in Webstrom or VsCode or any other preferred IDE of your choice. 
+- Finally getting started with Create React App
+    This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+- Launch `npm start` in the console
 
-
-
-
-
-
-
+It runs the app in the development mode.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Presentation Link
 Tech Stack used
