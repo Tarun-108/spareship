@@ -1,0 +1,5 @@
+insert into spareship.work_order (work_order_id, created_at, customer_contact, customer_name, description, status, updated_at, product_id, service_center_id)
+values  (1, '2023-10-08 20:08:32.943015', '+917441147546', 'Tarun Shrivastava', 'Screen broken for Realme Note 5 and battery is old', 'REGISTERED', '2023-10-08 20:08:32.943015', 2, 1),
+        (2, '2023-10-08 20:33:55.886427', '+917441147546', 'Tarun Shrivastava', 'Screen broken for Realme Note 5 and battery is old', 'REGISTERED', '2023-10-08 20:33:55.886427', 2, 1),
+        (3, '2023-10-08 20:57:19.718128', '9414614793', 'Bhimesh Agrawal', 'Dummy description', 'REGISTERED', '2023-10-08 20:57:19.718128', 1, 1),
+        (4, '2023-10-09 02:18:13.354514', '+911234567890', 'Abhisekh', 'Screen broken for Realme Note 5 Pro and camera change', 'REGISTERED', '2023-10-09 02:18:13.354514', 1, 1);
