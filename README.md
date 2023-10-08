@@ -40,17 +40,50 @@ by the Planning team
 - Now Open **spareship_frontend** in Webstrom or VsCode or any other preferred IDE of your choice. 
 - Finally getting started with Create React App
     This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-- Launch `npm start` in the console
+- Open terminal inside the project folder
+- Run `npm install` to install the desired packages
+- Run `npm start` 
 
 It runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Presentation Link
-Tech Stack used
+## Test Credentials
+
+- Service Center
+````
+   email: servicecenter1@spareship.in
+   password: password1
+````
+- Warehouse
+````
+   email: warehouse1@spareship.in
+   password: passwordw1
+````
+- Planning Team
+````
+   email: planningteam@spareship.in
+   password: passwordp1
+````
+- Customer Support
+````
+   email: customersupport@spareship.in
+   password: passwordc1
+````
+## Tech Stack used
 - For Backend: Java with Spring Boot Framework
 - For Frontend: ReactJs, HTML, Tailwind CSS
 
+
+## Presentation
+
+### ER Diagram 
+![image](https://github.com/Tarun-108/spareship/assets/79051562/c3ef1da9-d8ff-43c4-9242-63faa9ba8ffa)
+
+### Working Demo
+https://drive.google.com/file/d/1rflVM4DlTKDt1dbfutuHlLlVIzts7kOJ/view?usp=sharing
+
+### Detailed PPT
 Further details about the implementation of the solution is attached, the presentation contains the ER diagram describing the relations in the database and the workflow diagram of the website:
 
 https://docs.google.com/presentation/d/1J2ylagzdNmeQLGIQ0DWq_TJYKhRZ62lJxtCZ1eV5IHw/edit?usp=sharing
+
