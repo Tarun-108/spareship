@@ -1,85 +1,113 @@
-import { Select, Option, Input, Checkbox, Typography, Button } from "@material-tailwind/react"
-import NavBar from "../Components/StdNavBar"
-import { Link } from "react-router-dom"
-import { mockAllProducts } from "../data/data"
-import { API_URL } from "../constants"
 import { useEffect, useState } from "react"
+import Select from 'react-select'
+import axios from "axios"
+import { Box } from "@mui/material";
+import { DataGrid } from '@mui/x-data-grid';
+import { Input, Button, Typography } from "@material-tailwind/react"
+import NavBar from "../Components/StdNavBar"
+import { API_URL } from "../constants"
+
+
+const columns = [
+    { field: 'category', headerName: 'Category', width: 140 },
+    { field: 'description', headerName: 'Description', width: 400 }
+]
 
 const ServiceCenterComplaintPage = () => {
-    const [allProducts, setAllProducts] = useState(mockAllProducts);
-    const [allSpareParts, setAllSpareParts] = useState([]);
-    const [selectedProductId, setSelectedProductId] = useState(null);
-    const [selectedSparePartId, setSelectedSparePartId] = useState(null);
+
+    const [rows, setRows] = useState([])
     const [name, setName] = useState("");
     const [contact, setContact] = useState("");
     const [description, setDescription] = useState("");
+    const [serviceCenterId, setServiceCenterId] = useState(localStorage.getItem("user"))
+    const [products, setProducts] = useState([]);
+    const [spareParts, setSpareParts] = useState([]);
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    const [selectedSpareParts, setSelectedSpareParts] = useState([]);
 
-    const handleSubmit = () => {
-        if (name === "" || contact === "" || description === "" || selectedProductId === null || selectedSparePartId === null) {
+    useEffect(() => {
+        getProducts();
+    }, [])
+
+    useEffect(() => {
+        getSpareParts();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedProduct])
+
+    useEffect(() => {
+        const temp = spareParts.map(sparePart => ({
+            id: sparePart.skuId,
+            category: sparePart.category,
+            description: sparePart.description
+        }))
+        setRows(temp);
+    }, [spareParts])
+
+    const getProducts = async () => {
+        try {
+            const response = await axios.get(`${API_URL}/products/all`)
+            if (response.status !== 200) {
+                alert("error!");
+            } else {
+                const productOptions = response.data.map(product => ({
+                    value: product.productId,
+                    label: product.productName,
+                }));
+                setProducts(productOptions);
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const getSpareParts = async () => {
+        try {
+            if (selectedProduct === null) return;
+            const response = await axios.get(`${API_URL}/products/with_spare_part`, { params: { productId: selectedProduct } })
+            if (response.status !== 200) {
+                alert("error!");
+            } else {
+                setSpareParts(response.data.spareParts)
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const handleProductChange = async (selectedOption) => {
+        setSelectedProduct(selectedOption.value);
+    }
+
+    const handleSparePartsChange = async (selectedSpareParts) => {
+        setSelectedSpareParts(selectedSpareParts)
+    }
+
+    const handleSubmit = async () => {
+        if (name === "" || contact === "" || description === "" || selectedProduct === null || selectedSpareParts.length === 0) {
             alert("Please fill all the fields");
         }
         else {
-            fetch(`${API_URL}/database/register_complaint`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: name,
-                    contact: contact,
-                    description: description,
-                    product_id: selectedProductId,
-                    sku_id: selectedSparePartId,
-                }),
-            }).then((res) => {
-                return res.json();
-            }).then((data) => {
-                if (data.error) {
-                    alert(data.error);
-                }
-                else {
-                    alert("Complaint Registered Successfully");
-                    setName("");
-                    setContact("");
-                    setDescription("");
-                    setSelectedProductId(null);
-                    setSelectedSparePartId(null);
-                }
-            }).catch((err) => {
-                console.log(err);
-            });
+            const payload = {
+                customerName: name,
+                customerContact: contact,
+                description: description,
+                productId: selectedProduct,
+                serviceCenterId: serviceCenterId,
+                sparePartsIds: selectedSpareParts
+            }
+            const response = await axios.post(`${API_URL}/service_center/create_work_order`, payload)
+            if (response.status !== 200) {
+                alert("error!")
+            } else {
+                alert("Complaint Registered Successfully");
+                setName("");
+                setContact("");
+                setDescription("");
+                setSelectedProduct(null);
+                setSelectedSpareParts([]);
+            }
         }
     }
-
-    useEffect(() => {
-        allProducts.filter((product) => {
-            if (product.product_id === selectedProductId) {
-                setAllSpareParts(product.spare_parts);
-            }
-        })
-    }, [allProducts, selectedProductId]);
-
-
-    const getAllProducts = () => {
-        fetch(`${API_URL}/database/get_all_products`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        }).then((res) => {
-            return res.json();
-        }).then((data) => {
-            if (data.error) {
-                alert(data.error);
-            }
-            else {
-                setAllProducts(data.productsRes);
-            }
-        }).catch((err) => {
-            console.log(err);
-        });
-    }
-
 
     return (
         <div className="App" >
@@ -90,25 +118,17 @@ const ServiceCenterComplaintPage = () => {
                         Register Complaint
                     </div>
                     <div>
-                        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
-                            <div className="mb-4 flex flex-col gap-6">
+                        <form className="mt-8 mb-2  max-w-screen-lg ">
+                            <div className="mb-4 flex flex-col gap-6 w-100">
                                 <Input size="lg" label="Complainer Name" className="outline-1" value={name} onChange={(e) => setName(e.target.value)} />
                                 <Input size="lg" label="Complainer Contact" className="outline-1" value={contact} onChange={(e) => setContact(e.target.value)} />
                                 <Input size="lg" label="Description" className="outline-1" value={description} onChange={(e) => setDescription(e.target.value)} />
-                                <Select className="outline-1" label="Select Product" value={selectedProductId} onChange={(id) => setSelectedProductId(id)}>
-                                    {allProducts.map((product) => {
-                                        return (
-                                            <Option value={product.product_id}>{product.product_name}</Option>
-                                        )
-                                    })}
-                                </Select>
-                                <Select className="outline-1" label="Select Spare Parts" value={selectedSparePartId} onChange={(id) => setSelectedSparePartId(id)}>
-                                    {allSpareParts.map((sparePart) => {
-                                        return (
-                                            <Option value={sparePart.sku_id}>{sparePart.category}</Option>
-                                        )
-                                    })}
-                                </Select>
+                                <Typography>Select Product</Typography>
+                                <Select label="Select Product" options={products} onChange={handleProductChange} />
+                                <Box>
+                                    <Typography>Select Spare Parts</Typography>
+                                    <DataGrid rows={rows} columns={columns} checkboxSelection onRowSelectionModelChange={handleSparePartsChange} hideFooter localeText={{ noRowsLabel: "This is a custom message :)" }} />
+                                </Box>
                             </div>
                             <Button className="mt-6" fullWidth onClick={handleSubmit}>
                                 Submit

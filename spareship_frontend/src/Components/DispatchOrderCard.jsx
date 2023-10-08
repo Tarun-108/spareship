@@ -1,38 +1,29 @@
-import {
-    Card,
-    CardBody,
-    CardFooter,
-    Typography,
-    Button,
-    Dialog,
-    DialogHeader,
-    DialogBody,
-    DialogFooter,
-    List, ListItem, ListItemSuffix, Checkbox
-} from "@material-tailwind/react";
-import { useState } from "react";
+import axios from "axios";
+import { Card, CardBody, CardFooter, Typography, Button } from "@material-tailwind/react";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { API_URL } from "../constants";
 
 
 
 const DispatchOrderCard = ({ data }) => {
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(!open);
 
-    const sparePartData = {
-        _id: "2344",
-        category: "Screen",
-        description: "Screen for iPhone 12",
-        quantity: 2,
-    }
-
-    const cardData = {
-        _id: "237",
-        status: "Dispatched",
-        spareParts: [sparePartData],
-        warehouse: {
-            _id: "123",
-            name: "Warehouse 1",
-            contact: "1234567890",
+    const handleReceive = async () => {
+        const response = await axios.get(`${API_URL}/service_center/update_dispatch`, {
+            params: {
+                serviceCenterId: localStorage.getItem("user"),
+                dispatchId: data.dispatchId,
+            }
+        })
+        if (response.status !== 200) {
+            alert("error")
+        } else {
+            alert("success");
         }
     }
 
@@ -42,75 +33,41 @@ const DispatchOrderCard = ({ data }) => {
                 <CardBody>
                     <div className="flex justify-between">
                         <Typography variant="h5" color="blue-gray" className="mb-2">
-                            <span className="font-light">{`Order#${data.id}`}</span>
+                            <span className="font-light">{`Order#${data.dispatchId}`}</span>
                         </Typography>
                         <Typography>
                             {data.status}
                         </Typography>
                     </div>
                     <Typography>
-                        ServiceCenter#{data.ServiceCenterId}
+                        Warehouse: {`${data.warehouse?.addressStr}, ${data.warehouse?.pinCode} (${data.warehouse?.zone})`}
                     </Typography>
+                    <TableContainer component={Paper} className="mt-5">
+                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Item</TableCell>
+                                    <TableCell align="right">Category</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                <TableRow
+                                    key={data.sparePart.skuId}
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                    <TableCell component="th" scope="row">
+                                        {data.sparePart.description}
+                                    </TableCell>
+                                    <TableCell align="right">{data.sparePart.category}</TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
                 </CardBody>
                 <CardFooter className="pt-0">
-                    <Button onClick={handleOpen}>View More</Button>
+                    <Button onClick={handleReceive}>Receive</Button>
                 </CardFooter>
             </Card>
-            <Dialog open={open} handler={handleOpen}>
-                <DialogHeader>
-                    <div>
-                        <Typography variant="h5" color="blue-gray" className="">
-                            <span className="font-light">{`Order#${data.id}`}</span>
-                        </Typography>
-                    </div>
-                </DialogHeader>
-                <DialogBody divider>
-                    <Typography>
-                        Status: {data.status}
-                    </Typography>
-                    <Typography>
-                        Warehouse Id: {data.wareHouseId}
-                    </Typography>
-                    <hr />
-                    <Typography className="text-2xl font-bold my-3">
-                        Items
-                    </Typography>
-                    <List>
-                        {data.items.map((sparePartData, index) => {
-                            return (
-                                <ListItem key={sparePartData.id}>
-                                    <div className="flex">
-                                        <div className="ml-4">
-                                            <Typography variant="h6" color="blue-gray">
-                                                {sparePartData.category}
-                                            </Typography>
-                                            <Typography variant="small" color="gray" className="font-normal">
-                                                {sparePartData.description}
-                                            </Typography>
-                                        </div>
-                                    </div>
-                                    <ListItemSuffix>
-                                        Qty: 2
-                                    </ListItemSuffix>
-                                </ListItem>
-                            )
-                        })}
-                    </List>
-                </DialogBody>
-                <DialogFooter>
-                    <Button
-                        variant="text"
-                        color="red"
-                        onClick={handleOpen}
-                        className="mr-1"
-                    >
-                        <span>Cancel</span>
-                    </Button>
-                    <Button variant="gradient" color="green" onClick={handleOpen}>
-                        <span>Received</span>
-                    </Button>
-                </DialogFooter>
-            </Dialog>
         </div>
     )
 }

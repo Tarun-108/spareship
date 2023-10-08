@@ -8,7 +8,7 @@ import {
     DialogHeader,
     DialogBody,
     DialogFooter,
-    List, ListItem, Checkbox
+    List, ListItem
 } from "@material-tailwind/react";
 import { useState } from "react";
 
@@ -25,14 +25,14 @@ const CustomerSupportCard = ({ data }) => {
                 <CardBody>
                     <div className="flex justify-between">
                         <Typography variant="h5" color="blue-gray" className="mb-2">
-                            {cardData.complainerName},&nbsp;<span className="font-light">{`Complaint#${cardData.id}`}</span>
+                            {cardData.customerName},&nbsp;<span className="font-light">{`Complaint#${cardData.workOrderId}`}</span>
                         </Typography>
                         <Typography>
                             {cardData.status}
                         </Typography>
                     </div>
                     <Typography>
-                        {cardData.productName}
+                        {cardData.product.productName}
                     </Typography>
                     <Typography>
                         {cardData.description}
@@ -46,10 +46,10 @@ const CustomerSupportCard = ({ data }) => {
                 <DialogHeader>
                     <div>
                         <Typography variant="h5" color="blue-gray" className="">
-                            {cardData.complainerName},&nbsp;<span className="font-light">{`Complaint#${cardData.id}`}</span>
+                            {cardData.customerName},&nbsp;<span className="font-light">{`Complaint#${cardData.workOrderId}`}</span>
                         </Typography>
                         <Typography>
-                            {cardData.contact}
+                            {cardData.customerContact}
                         </Typography>
                     </div>
                 </DialogHeader>
@@ -58,7 +58,7 @@ const CustomerSupportCard = ({ data }) => {
                         Status: {cardData.status}
                     </Typography>
                     <Typography>
-                        Product: {cardData.productName}
+                        Product: {cardData.product.productName}
                     </Typography>
                     <Typography className="mb-4">
                         Description: {cardData.description}
@@ -68,16 +68,16 @@ const CustomerSupportCard = ({ data }) => {
                         Requirements
                     </Typography>
                     <List>
-                        {cardData.requirements.map((sparePartData, index) => {
+                        {cardData.workOrderSpareParts.map((sparePartData, index) => {
                             return (
-                                <ListItem key={sparePartData.id}>
+                                <ListItem key={sparePartData.sparePart.skuId}>
                                     <div className="flex">
                                         <div>
                                             <Typography variant="h6" color="blue-gray">
-                                                {sparePartData.category}
+                                                {sparePartData.sparePart.category}
                                             </Typography>
                                             <Typography variant="small" color="gray" className="font-normal">
-                                                {sparePartData.description}
+                                                {sparePartData.sparePart.description}
                                             </Typography>
                                         </div>
                                     </div>

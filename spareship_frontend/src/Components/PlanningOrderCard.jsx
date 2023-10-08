@@ -1,21 +1,53 @@
-import {
-    Card,
-    CardBody,
-    CardFooter,
-    Typography,
-    Button,
-    Dialog,
-    DialogHeader, DialogBody, DialogFooter, List, ListItem, ListItemSuffix, Select, Option
-} from "@material-tailwind/react";
-import { useState } from "react";
-import { warehouses } from "../data/data";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Card, CardBody, CardFooter, Typography, Button, Dialog, DialogHeader, DialogBody, DialogFooter, List, ListItem, ListItemSuffix } from "@material-tailwind/react";
+import Select from 'react-select'
+import { API_URL } from "../constants";
 
 
 
 const PlanningOrderCard = ({ data }) => {
     const [open, setOpen] = useState(false);
+    const [warehouses, setWarehouses] = useState([])
+    const [options, setOptions] = useState([])
+    const [selectedWarehouse, setSelectedWarehouse] = useState(null)
     const handleOpen = () => setOpen(!open);
     const cardData = data
+
+    const fetchWarehouses = async () => {
+        const response = await axios.get(`${API_URL}/planning_team/get_warehouses`, {
+            params: { dispatchId: cardData.dispatchId }
+        });
+        if (response.status !== 200) {
+            alert("error")
+        } else {
+            const arr = [];
+            response.data.forEach((warehouse) => {
+                arr.push({ value: warehouse.warehouseId, label: `${warehouse.addressStr}(${warehouse.zone})` })
+            })
+            setOptions(arr)
+            setWarehouses(response.data)
+        }
+    }
+
+    useEffect(() => {
+        fetchWarehouses();
+    }, [])
+
+    const handleAllot = async () => {
+        const response = await axios.get(`${API_URL}/planning_team/set_warehouse`, {
+            params: {
+                dispatchId: cardData.dispatchId,
+                warehouseId: selectedWarehouse
+            }
+        });
+        if (response.status !== 200) {
+            alert("error")
+        } else {
+            alert("Alloted!")
+            window.location.reload();
+        }
+    }
 
     return (
         <div>
@@ -23,17 +55,14 @@ const PlanningOrderCard = ({ data }) => {
                 <CardBody>
                     <div className="flex justify-between">
                         <Typography variant="h5" color="blue-gray" className="mb-2">
-                            {cardData.complainerName},&nbsp;<span className="font-light">{`Complaint#${cardData.id}`}</span>
+                            {cardData.sparePart.description},&nbsp;<span className="font-light">{`Dispatch#${cardData.dispatchId}`}</span>
                         </Typography>
                         <Typography>
                             {cardData.status}
                         </Typography>
                     </div>
                     <Typography>
-                        {cardData.productName}
-                    </Typography>
-                    <Typography>
-                        {cardData.description}
+                        {cardData.sparePart.category}
                     </Typography>
                 </CardBody>
                 <CardFooter className="pt-0">
@@ -44,10 +73,7 @@ const PlanningOrderCard = ({ data }) => {
                 <DialogHeader>
                     <div>
                         <Typography variant="h5" color="blue-gray" className="">
-                            {cardData.complainerName},&nbsp;<span className="font-light">{`Complaint#${cardData.id}`}</span>
-                        </Typography>
-                        <Typography>
-                            {cardData.contact}
+                            {cardData.sparePart.description},&nbsp;<span className="font-light">{`Dispatch#${cardData.dispatchId}`}</span>
                         </Typography>
                     </div>
                 </DialogHeader>
@@ -55,43 +81,33 @@ const PlanningOrderCard = ({ data }) => {
                     <Typography>
                         Status: {cardData.status}
                     </Typography>
-                    <Typography>
-                        Product: {cardData.productName}
-                    </Typography>
                     <Typography className="mb-4">
-                        Description: {cardData.description}
+                        Service Center: {`${cardData.serviceCenter.addressStr}, ${cardData.serviceCenter.pinCode} (${cardData.serviceCenter.zone}) `}
                     </Typography>
                     <hr />
                     <Typography className="text-2xl font-bold my-3">
                         Requirements
                     </Typography>
-                    <List>
-                        {cardData.requirements.map((sparePartData, index) => {
-                            return (
-                                <ListItem key={sparePartData.id}>
-                                    <div className="flex">
-                                        <div>
-                                            <Typography variant="h6" color="blue-gray">
-                                                {sparePartData.category}
-                                            </Typography>
-                                            <Typography variant="small" color="gray" className="font-normal">
-                                                {sparePartData.description}
-                                            </Typography>
-                                        </div>
-                                    </div>
-                                    <ListItemSuffix className="overflow-scroll">
-                                        <Select label="Select Warehouse">
-                                            {warehouses.map((warehouse) => {
-                                                return (
-                                                    <Option key={warehouse.id}>{warehouse.name}</Option>
-                                                )
-                                            })}
-                                        </Select>
-                                    </ListItemSuffix>
-                                </ListItem>
-                            )
-                        })}
-                    </List>
+
+                    <div key={cardData.sparePart.skuId}>
+                        <div className="flex">
+                            <div>
+                                <Typography variant="h6" color="blue-gray">
+                                    {cardData.sparePart.category}
+                                </Typography>
+                                <Typography variant="small" color="gray" className="font-normal">
+                                    {cardData.sparePart.description}
+                                </Typography>
+                            </div>
+                        </div>
+                        {cardData.status !== "ALLOTTED" ?
+                            <Select className="mt-2" value={options.filter(option => option.value === selectedWarehouse)[0]} label="Select Warehouse" options={options} onChange={(e) => setSelectedWarehouse(e.value)} />
+                            :
+                            <Typography className="mt-2">
+                                Warehouse: {`${cardData.warehouse.addressStr}, ${cardData.warehouse.pinCode} (${cardData.warehouse.zone}) `}
+                            </Typography>
+                        }
+                    </div>
                 </DialogBody>
                 <DialogFooter>
                     <Button
@@ -102,9 +118,10 @@ const PlanningOrderCard = ({ data }) => {
                     >
                         <span>Cancel</span>
                     </Button>
-                    <Button variant="gradient" color="green" onClick={handleOpen}>
-                        <span>Allot</span>
-                    </Button>
+                    {cardData.status !== "ALLOTTED" &&
+                        <Button variant="gradient" color="green" onClick={handleAllot}>
+                            <span>Allot</span>
+                        </Button>}
                 </DialogFooter>
             </Dialog>
         </div>

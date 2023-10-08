@@ -1,11 +1,15 @@
 import ComplaintCard from '../Components/ComplaintCard'
 import NavBar from '../Components/StdNavBar'
+import axios from 'axios'
 import { Button } from '@material-tailwind/react'
 import { useNavigate } from 'react-router-dom'
-import { workOrders } from '../data/data'
+import { API_URL } from '../constants'
+import { useEffect, useState } from 'react'
 
 const ServiceCenterPage = () => {
     let navigate = useNavigate();
+    const [email, setEmail] = useState(localStorage.getItem("email"));
+    const [workOrders, setWorkOrders] = useState([]);
 
     const handleOpenComplaintForm = () => {
         navigate("/service-center/complaint");
@@ -14,6 +18,20 @@ const ServiceCenterPage = () => {
     const handleOpenInventory = () => {
         navigate("/service-center/inventory");
     }
+
+    const fetchWorkOrders = async () => {
+        const response = await axios.get(`${API_URL}/service_center/get_work_orders`, { params: { email: email } })
+        if (response.status !== 200) {
+            alert("error!")
+        } else {
+            setWorkOrders(response.data)
+        }
+    }
+
+    useEffect(() => {
+        fetchWorkOrders()
+    }, [])
+
 
     return (
         <div className="App">
@@ -43,11 +61,11 @@ const ServiceCenterPage = () => {
                     </div>
                 </div>
                 <div>
-                    {workOrders.map((data) => {
+                    {workOrders.map((order) => {
                         return (
                             <ComplaintCard
-                                key={data.id}
-                                data={data}
+                                key={order.workOrderId}
+                                data={order}
                             />
                         )
                     })}

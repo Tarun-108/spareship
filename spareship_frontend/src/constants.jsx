@@ -1,12 +1,14 @@
-export const API_URL = "http://localhost:4000/api/";
+export const dlink = "http://172.16.117.205:5000";
+export const laxy = "http://192.168.197.137:5000";
+export const API_URL = dlink;
 
-export const serviceCenter = "serviceCenter";
-export const warehouse = "wareHouse";
-export const planning = "planning";
-export const customerSupport = "customerSupport";
+export const serviceCenter = "SERVICE_CENTER";
+export const warehouse = "WAREHOUSE";
+export const planning = "PLANNING_TEAM";
+export const customerSupport = "CUSTOMER_SUPPORT";
 
 export const isLoggedIn = () => {
-    if (localStorage.getItem("token") && localStorage.getItem("userType") && localStorage.getItem("user")) {
+    if (localStorage.getItem("userType") && localStorage.getItem("user")) {
         return true;
     }
     return false;

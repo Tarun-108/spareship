@@ -1,12 +1,30 @@
-import PlanningOrderCard from "../Components/PlanningOrderCard";
-import NavBar from "../Components/StdNavBar";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@material-tailwind/react";
 import { workOrders } from "../data/data";
+import NavBar from "../Components/StdNavBar";
+import PlanningOrderCard from "../Components/PlanningOrderCard";
+import { API_URL } from "../constants";
+
 
 const Planning = () => {
+    const [dispatchOrders, setDispatchOrders] = useState([])
+
+    const fetchDispatchOrders = async () => {
+        const resposne = await axios.get(`${API_URL}/planning_team/get_dispatches`);
+        if (resposne.status !== 200) {
+            alert("error");
+        } else {
+            setDispatchOrders(resposne.data)
+        }
+    }
+
+    useEffect(() => {
+        fetchDispatchOrders();
+    }, [])
 
     return (
-        <div className="App">
+        <div className="App" >
             <NavBar />
             <div className="m-10">
                 <Tabs value="html">
@@ -21,11 +39,11 @@ const Planning = () => {
                     <TabsBody>
                         <TabPanel key={"alloted"} value={"alloted"}>
                             <div>
-                                {workOrders.filter((workOrder => workOrder.status === "ALLOTTED")).map((workOrder) => {
+                                {dispatchOrders.filter((dispatchOrder => dispatchOrder.status === "ALLOTTED")).map((dispatchOrder) => {
                                     return (
                                         <PlanningOrderCard
-                                            key={workOrder.id}
-                                            data={workOrder}
+                                            key={dispatchOrder.dispatchId}
+                                            data={dispatchOrder}
                                         />
                                     )
                                 })}
@@ -33,11 +51,11 @@ const Planning = () => {
                         </TabPanel>
                         <TabPanel key={"unalloted"} value={"unalloted"}>
                             <div>
-                                {workOrders.filter((workOrder => workOrder.status !== "ALLOTTED")).map((workOrder) => {
+                                {dispatchOrders.filter((dispatchOrder => dispatchOrder.status !== "ALLOTTED")).map((dispatchOrder) => {
                                     return (
                                         <PlanningOrderCard
-                                            key={workOrder.id}
-                                            data={workOrder}
+                                            key={dispatchOrder.id}
+                                            data={dispatchOrder}
                                         />
                                     )
                                 })}

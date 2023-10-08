@@ -1,24 +1,25 @@
-import React, { useState } from "react";
-import { Navbar, MobileNav, Typography, Button, IconButton } from "@material-tailwind/react";
+import { useState, useEffect } from "react";
+import { Navbar, Collapse, Typography, Button, IconButton, Avatar } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { isLoggedIn } from "../constants";
 
 
 const NavBar = () => {
-    let navigate = useNavigate();
-    const [user, setUser] = useState();
-    const [openNav, setOpenNav] = React.useState(false);
 
-    if (isLoggedIn()) {
-        setUser(JSON.parse(localStorage.getItem("user")));
-    }
+    let navigate = useNavigate();
+    const [user, setUser] = useState(localStorage.getItem("user"));
+    const [openNav, setOpenNav] = useState(false);
 
     const handleLoginRedirect = () => {
         navigate("/signin");
     }
 
-    React.useEffect(() => {
+    const handleLogoutRedirect = () => {
+        localStorage.clear()
+        navigate("/")
+    }
+
+    useEffect(() => {
         window.addEventListener(
             "resize",
             () => window.innerWidth >= 960 && setOpenNav(false)
@@ -29,19 +30,22 @@ const NavBar = () => {
         <div className="max-h-[768px] w-[calc(100%)]">
             <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
                 <div className="flex items-center justify-between text-gray-900">
-                    <Typography
-                        as="a"
-                        href="#"
-                        className="mr-4 cursor-pointer py-1.5 font-medium"
-                    >
-                        <Link to="/">SpareShip</Link>
-                    </Typography>
+                    <div className="flex gap-1">
+                        <IconButton className="bg-white p-0 w-20 h-auto" >
+                            <Avatar alt="Logo" src="/Logo.png" className="h-6" />
+                        </IconButton>
+                        <Typography
+                            className="mr-4 cursor-pointer py-1.5 font-medium"
+                        >
+                            <Link to="/">SpareShip</Link>
+                        </Typography>
+                    </div>
                     <div className="flex items-center gap-4">
                         {user ? <Button
                             variant="gradient"
                             size="sm"
                             className="hidden lg:inline-block"
-                            onClick={handleLoginRedirect}
+                            onClick={handleLogoutRedirect}
                         >
                             <span>Logout</span>
                         </Button> : <Button
@@ -91,11 +95,11 @@ const NavBar = () => {
                         </IconButton>
                     </div>
                 </div>
-                <MobileNav open={openNav}>
+                <Collapse open={openNav}>
                     <Button variant="gradient" size="sm" fullWidth className="mb-2">
                         <span>Buy Now</span>
                     </Button>
-                </MobileNav>
+                </Collapse>
             </Navbar>
         </div>
     );

@@ -1,13 +1,38 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import NavBar from "../Components/StdNavBar";
 import SignIn from "../Components/SignIn"
-import { useNavigate } from "react-router-dom";
-import { isLoggedIn } from "../constants";
+import { customerSupport, isLoggedIn, planning, serviceCenter, warehouse } from "../constants";
 
 const SignInPage = () => {
     let navigate = useNavigate();
-    if (isLoggedIn()) {
-        navigate(`/${localStorage.getItem("userType")}`);
-    }
+    const [user, setUser] = useState("");
+
+    useEffect(() => {
+        if (isLoggedIn()) {
+            setUser(localStorage.getItem("user"))
+        }
+    }, [])
+
+    useEffect(() => {
+        switch (localStorage.getItem("userType")) {
+            case serviceCenter:
+                navigate(`/service-center`);
+                break;
+            case planning:
+                navigate(`/planning`);
+                break;
+            case warehouse:
+                navigate(`/warehouse`);
+                break;
+            case customerSupport:
+                navigate(`/customer-support`);
+                break;
+            default:
+                break;
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user])
 
     return (
         <div className="App">
