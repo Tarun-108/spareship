@@ -1,33 +1,72 @@
 package com.taruns.spareship_backend.models.entities;
 
-
-import com.taruns.spareship_backend.models.helpers.enums.Status;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.taruns.spareship_backend.models.helpers.enums.WorkOrderStatus;
+import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
-@Getter
-@Setter
-@ToString
+
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "WORK_ORDER_TABLE")
+@Table(name = "work_order")
 public class WorkOrder {
     @Id
-    private int id;
-    private int productId;
-    private int serviceCenterId;
-    private int wareHouseId;
-    private int dispatchOrderId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "work_order_id")
+    private int workOrderId;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "service_center_id", nullable = false)
+    @JsonIgnore
+    private ServiceCenter serviceCenter;
+
+    @Column(name = "customer_name", nullable = false)
     private String customerName;
+
+    @Column(name = "customer_contact", nullable = false)
     private String customerContact;
-    private String description;
-    private Status status;
-    private Timestamp dateTime;
+
+    @Column(name = "description", nullable = false)
+    private String description = "No Description provided";
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private WorkOrderStatus status = WorkOrderStatus.REGISTERED;
+
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "workOrder")
+    List<WorkOrderSparePart> workOrderSpareParts = new ArrayList<>();
+
+    @PrePersist
+    public void prePersist() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
+
+    @Override
+    public String toString() {
+        return "WorkOrder [id=" + workOrderId + ", description=" + description + "]";
+    }
+
+
 }
