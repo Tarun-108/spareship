@@ -47,7 +47,28 @@ by the Planning team
 It runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+## Test Credentials
 
+- Service Center
+````
+   email: servicecenter1@spareship.in
+   password: password1
+````
+- Warehouse
+````
+   email: warehouse1@spareship.in
+   password: passwordw1
+````
+- Planning Team
+````
+   email: planningteam@spareship.in
+   password: passwordp1
+````
+- Customer Support
+````
+   email: customersupport@spareship.in
+   password: passwordc1
+````
 ## Tech Stack used
 - For Backend: Java with Spring Boot Framework
 - For Frontend: ReactJs, HTML, Tailwind CSS
