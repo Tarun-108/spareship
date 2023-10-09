@@ -77,7 +77,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ## Presentation
 
 ### ER Diagram 
-![image](https://github.com/Tarun-108/spareship/assets/79051562/c3ef1da9-d8ff-43c4-9242-63faa9ba8ffa)
+![image](https://github.com/Tarun-108/spareship/assets/79051562/327024ca-a9b0-48c9-ab74-2408e74f5e23)
+
 
 ### Working Demo
 https://drive.google.com/file/d/1rflVM4DlTKDt1dbfutuHlLlVIzts7kOJ/view?usp=sharing
