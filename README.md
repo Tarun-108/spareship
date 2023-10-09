@@ -85,5 +85,5 @@ https://drive.google.com/file/d/1rflVM4DlTKDt1dbfutuHlLlVIzts7kOJ/view?usp=shari
 ### Detailed PPT
 Further details about the implementation of the solution is attached, the presentation contains the ER diagram describing the relations in the database and the workflow diagram of the website:
 
-(https://www.canva.com/design/DAFwqZaIGkc/_BlJEoLrc2h5HgzoInWBCw/view)https://www.canva.com/design/DAFwqZaIGkc/_BlJEoLrc2h5HgzoInWBCw/view
+https://www.canva.com/design/DAFwqZaIGkc/_BlJEoLrc2h5HgzoInWBCw/view
 
