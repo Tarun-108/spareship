@@ -1,4 +1,4 @@
-# Ode2Code 3.0
+# Spareship (Ode2Code 3.0)
 Developed an automated Spare Part Planning, Visibility, and Assignment tool (Mobile and PC) for aftersales
 stakeholders which include Planning, Warehouse, Service Centres, and Customer Support teams. The tool
 will help capture the spare parts requirements for each service center and prepare a summarized material
