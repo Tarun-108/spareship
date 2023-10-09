@@ -77,7 +77,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ## Presentation
 
 ### ER Diagram 
-![image](https://github.com/Tarun-108/spareship/assets/79051562/c3ef1da9-d8ff-43c4-9242-63faa9ba8ffa)
+![Untitled Diagram drawio](https://github.com/Tarun-108/spareship/assets/79051562/724f61f0-77c7-416f-97a8-af1eb23a6875)
+
 
 ### Working Demo
 https://drive.google.com/file/d/1rflVM4DlTKDt1dbfutuHlLlVIzts7kOJ/view?usp=sharing
@@ -85,5 +86,5 @@ https://drive.google.com/file/d/1rflVM4DlTKDt1dbfutuHlLlVIzts7kOJ/view?usp=shari
 ### Detailed PPT
 Further details about the implementation of the solution is attached, the presentation contains the ER diagram describing the relations in the database and the workflow diagram of the website:
 
-https://docs.google.com/presentation/d/1J2ylagzdNmeQLGIQ0DWq_TJYKhRZ62lJxtCZ1eV5IHw/edit?usp=sharing
+https://www.canva.com/design/DAFwqZaIGkc/_BlJEoLrc2h5HgzoInWBCw/view
 
