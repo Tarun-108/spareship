@@ -33,13 +33,13 @@ const Planning = () => {
                             Unalloted Orders
                         </Tab>
                         <Tab key={"alloted"} value={"alloted"}>
-                            Alloted Orders
+                            All Other Orders
                         </Tab>
                     </TabsHeader>
                     <TabsBody>
                         <TabPanel key={"alloted"} value={"alloted"}>
                             <div>
-                                {dispatchOrders.filter((dispatchOrder => dispatchOrder.status === "ALLOTTED")).map((dispatchOrder) => {
+                                {dispatchOrders.filter((dispatchOrder => dispatchOrder.status !== "REGISTERED")).map((dispatchOrder) => {
                                     return (
                                         <PlanningOrderCard
                                             key={dispatchOrder.dispatchId}
@@ -51,7 +51,7 @@ const Planning = () => {
                         </TabPanel>
                         <TabPanel key={"unalloted"} value={"unalloted"}>
                             <div>
-                                {dispatchOrders.filter((dispatchOrder => dispatchOrder.status !== "ALLOTTED")).map((dispatchOrder) => {
+                                {dispatchOrders.filter((dispatchOrder => dispatchOrder.status === "REGISTERED")).map((dispatchOrder) => {
                                     return (
                                         <PlanningOrderCard
                                             key={dispatchOrder.id}

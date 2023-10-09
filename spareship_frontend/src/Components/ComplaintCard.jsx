@@ -99,7 +99,7 @@ const ComplaintCard = ({ data }) => {
                     <Typography className="text-2xl font-bold my-3">
                         Requirements
                     </Typography>
-                    <DataGrid {...selectedIds} rows={rows} columns={columns} checkboxSelection onRowSelectionModelChange={handleSparePartsChange} hideFooter isRowSelectable={(params) => !params.row.availability} />
+                    <DataGrid {...selectedIds} rows={rows} columns={columns} checkboxSelection onRowSelectionModelChange={handleSparePartsChange} hideFooter isRowSelectable={(params) => (params.row.availability === 'Available')} />
                 </DialogBody>
                 <DialogFooter>
                     <Button

@@ -1,6 +1,7 @@
 export const dlink = "http://172.16.117.205:5000";
 export const laxy = "http://192.168.197.137:5000";
-export const API_URL = dlink;
+export const localhost = "http://localhost:5000";
+export const API_URL = localhost;
 
 export const serviceCenter = "SERVICE_CENTER";
 export const warehouse = "WAREHOUSE";
