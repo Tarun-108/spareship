@@ -91,6 +91,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ### Detailed PPT
 Further details about the implementation of the solution is attached, the presentation contains the ER diagram describing the relations in the database and the workflow diagram of the website:
 
-[Ode2Code.pdf](https://github.com/Tarun-108/spareship/files/12887275/Ode2Code.pdf)
+https://www.canva.com/design/DAFwqZaIGkc/_BlJEoLrc2h5HgzoInWBCw/view
 
 
