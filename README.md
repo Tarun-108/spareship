@@ -19,8 +19,11 @@ by the Planning team
 5) Customer support
    - Address customer queries about device repair orders
   
+
+
+
 # Working Demo
-https://drive.google.com/file/d/1rflVM4DlTKDt1dbfutuHlLlVIzts7kOJ/view?usp=sharing
+https://github.com/Tarun-108/spareship/assets/76252839/5169e0f5-a287-401f-8bfd-c62b253a9bb7
 
 
 # Installation
@@ -88,5 +91,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ### Detailed PPT
 Further details about the implementation of the solution is attached, the presentation contains the ER diagram describing the relations in the database and the workflow diagram of the website:
 
-https://www.canva.com/design/DAFwqZaIGkc/_BlJEoLrc2h5HgzoInWBCw/view
+[Ode2Code.pdf](https://github.com/Tarun-108/spareship/files/12887275/Ode2Code.pdf)
+
 
