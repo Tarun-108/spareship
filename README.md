@@ -18,6 +18,11 @@ dispatch plan for the spare part planning team, warehouse team, and customer sup
 by the Planning team
 5) Customer support
    - Address customer queries about device repair orders
+  
+# Working Demo
+https://drive.google.com/file/d/1rflVM4DlTKDt1dbfutuHlLlVIzts7kOJ/view?usp=sharing
+
+
 # Installation
 
 - Clone the github repository.
@@ -79,9 +84,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ### ER Diagram 
 ![Untitled Diagram drawio](https://github.com/Tarun-108/spareship/assets/79051562/724f61f0-77c7-416f-97a8-af1eb23a6875)
 
-
-### Working Demo
-https://drive.google.com/file/d/1rflVM4DlTKDt1dbfutuHlLlVIzts7kOJ/view?usp=sharing
 
 ### Detailed PPT
 Further details about the implementation of the solution is attached, the presentation contains the ER diagram describing the relations in the database and the workflow diagram of the website:
