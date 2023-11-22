@@ -19,13 +19,29 @@ by the Planning team
 5) Customer support
    - Address customer queries about device repair orders
   
+## Tech Stack used
+- For Backend: Java with Spring Boot Framework
+- For Frontend: ReactJs, HTML, Tailwind CSS
 
 
+## Presentation
 
-# Working Demo
+### ER Diagram 
+![Untitled Diagram drawio](https://github.com/Tarun-108/spareship/assets/79051562/724f61f0-77c7-416f-97a8-af1eb23a6875)
+
+
+### Detailed PPT
+Further details about the implementation of the solution are attached. The presentation contains the ER diagram describing the relations in the database and the workflow diagram of the web app:
+
+https://www.canva.com/design/DAFwqZaIGkc/_BlJEoLrc2h5HgzoInWBCw/view
+
+
+## Working Demo
 
 
 https://github.com/Tarun-108/spareship/assets/76252839/11bf29cf-0ac1-4140-9b95-4e233fa3bd31
+
+
 
 
 
@@ -81,20 +97,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
    email: customersupport@spareship.in
    password: passwordc1
 ````
-## Tech Stack used
-- For Backend: Java with Spring Boot Framework
-- For Frontend: ReactJs, HTML, Tailwind CSS
 
 
-## Presentation
-
-### ER Diagram 
-![Untitled Diagram drawio](https://github.com/Tarun-108/spareship/assets/79051562/724f61f0-77c7-416f-97a8-af1eb23a6875)
-
-
-### Detailed PPT
-Further details about the implementation of the solution is attached, the presentation contains the ER diagram describing the relations in the database and the workflow diagram of the website:
-
-https://www.canva.com/design/DAFwqZaIGkc/_BlJEoLrc2h5HgzoInWBCw/view
 
 
