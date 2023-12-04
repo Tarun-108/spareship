@@ -26,12 +26,18 @@ by the Planning team
 
 ## Presentation
 
-### ER Diagram 
+### Requirement Analysis (ER Diagram)
 ![Untitled Diagram drawio](https://github.com/Tarun-108/spareship/assets/79051562/724f61f0-77c7-416f-97a8-af1eb23a6875)
+
+### Data of the Database
+DB Data (https://github.com/Tarun-108/spareship/tree/ecbf1d83e9fbdf7bdb48e8fe26ec18ffb4e70cbe/dbData)
+
+### EER Model of the Database
+![eer_spareship](https://github.com/Tarun-108/spareship/assets/76252839/95dfbaca-34ff-453b-9a12-6b5f5083d1a8)
 
 
 ### Detailed PPT
-Further details about the implementation of the solution are attached. The presentation contains the ER diagram describing the relations in the database and the workflow diagram of the web app:
+I've attached additional details about the implementation of the solution. The presentation contains the ER diagram describing the relations in the database and the workflow diagram of the web app:
 
 https://www.canva.com/design/DAFwqZaIGkc/_BlJEoLrc2h5HgzoInWBCw/view
 
@@ -43,17 +49,14 @@ https://github.com/Tarun-108/spareship/assets/76252839/11bf29cf-0ac1-4140-9b95-4
 
 
 
-
-
-
 # Installation
 
-- Clone the github repository.
+- Clone the GitHub repository.
 - Launch the MySQL Console
 - Import the data from the **dbData** folder using the MySQL Console
 - Open the folder **spareship_backend** using IntelliJ or any preferred IDE
-- Make sure you have appropriate JDK present on the machine to launch the project
-- After launching the project paste the following in resources/application.properties
+- Make sure you have the appropriate JDK present on the machine to launch the project
+- After launching the project, paste the following in resources/application.properties
 ````
    app.name=SpareShip
    app.version=v1
@@ -66,11 +69,11 @@ https://github.com/Tarun-108/spareship/assets/76252839/11bf29cf-0ac1-4140-9b95-4
 ````
 - Build and launch the project; On successfull execution the server is listening to **localhost:5000/**
 - Now Open **spareship_frontend** in Webstrom or VsCode or any other preferred IDE of your choice. 
-- Finally getting started with Create React App
+- Finally, getting started with Create React App
     This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-- Open terminal inside the project folder
-- Run `npm install` to install the desired packages
-- Run `npm start` 
+- Open the terminal inside the project folder.
+- Run `npm install` to install the desired packages.
+- Run `npm start`.
 
 It runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
